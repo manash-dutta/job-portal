@@ -1,0 +1,43 @@
+<div class="row row-cols-1 row-cols-md-3 mb-3 mt-5">
+  <% jobs.forEach(job => { %>
+    <div class="col">
+      <div class="card mb-4 rounded-3 shadow-sm">
+        <div class="card-header py-1">
+          <span
+            class="badge d-flex align-items-center p-2 pe-2 text-success-emphasis bg-success-subtle border border-success-subtle rounded-pill w-75"
+          >
+            Actively hiring
+            <i class="fas fa-chart-line ms-2 fs-5"></i>
+          </span>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title text-warning-emphasis"><%= job.company %></h1>
+          <h2 class="text-body-secondary fs-5">
+            Tech <span class="text-success-emphasis"><%= job.position %></span>
+          </h2>
+          <div class="d-flex">
+            <i class="fas fa-compass"></i>
+            <h3 class="fs-5 text-secondary"><%= job.location %></h3>
+          </div>
+          <div class="d-flex">
+            &nbsp;
+            <i class="fas fa-dollar-sign fs-4"></i>
+            <h3 class="fs-5 text-secondary">&nbsp;<%= job.salary %>/pa</h3>
+          </div>
+          <ul class="list-unstyled mt-3 mb-4 d-flex flex-wrap">
+            <% job.skills.forEach(skill => { %>
+              <li
+                class="text-success-emphasis px-2 py-1 border border-success mb-1 me-1 rounded-pill"
+              >
+                <%= skill %>
+              </li>
+            <% }) %>
+          </ul>
+          <button type="button" class="w-100 btn btn-lg btn-outline-success rounded-pill">
+            View Details
+          </button>
+        </div>
+      </div>
+    </div>
+  <% }) %>
+</div>
