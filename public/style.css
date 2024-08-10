@@ -62,6 +62,18 @@ input:checked + .slider::before {
   margin-right: 5px;
 }
 
+.delete-icon:hover,
+.edit-icon:hover {
+  filter: brightness(80%);
+  transform: scale(1.1);
+}
+
+/* Placeholder text */
+.form-control::placeholder {
+  color: #6c757d;
+  opacity: 1;
+}
+
 @media (max-width: 991px) {
   .theme-switch-wrapper-s {
     display: none;

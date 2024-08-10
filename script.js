@@ -25,8 +25,13 @@ const jobsController = new JobsController();
 app.get("/", jobsController.getHome);
 app.get("/jobs", jobsController.getJobs);
 app.get("/jobs/:id", jobsController.getJobDetails);
+app.get("/new-job", jobsController.getAddNewJob);
+app.get("/edit-job/:id", jobsController.getUpdateJob);
 
 // POST Routes
+app.post("/add-job", jobsController.postAddNewJob);
+app.post("/edit-job", jobsController.postUpdateJob);
+app.post("/delete-job/:id", jobsController.postDeleteJob);
 
 // Setting server to listen to port
 app.listen(2200, () => {

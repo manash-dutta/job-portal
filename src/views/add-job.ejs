@@ -1,0 +1,133 @@
+<h1 class="text-center text-secondary">Post a new Job</h1>
+
+<form action="/add-job" method="POST" class="row g-3 text-secondary">
+  <div class="col-12">
+    <select
+      class="form-select text-secondary"
+      aria-label="Job Category"
+      name="category"
+    >
+      <option selected class="text-secondary">Select job category</option>
+      <option value="Tech" class="text-secondary">Tech</option>
+      <option value="Non-Tech" class="text-secondary">Non-Tech</option>
+    </select>
+  </div>
+  <div class="col-12">
+    <select
+      class="form-select text-secondary"
+      aria-label="Job Designation"
+      name="position"
+    >
+      <option selected class="text-secondary">Select job designation</option>
+      <option value="HR" class="text-secondary">HR</option>
+      <option value="SDE" class="text-secondary">SDE</option>
+      <option value="DevOps" class="text-secondary">DevOps</option>
+      <option value="MERN Developer" class="text-secondary">
+        MERN Developer
+      </option>
+      <option value="MEAN Developer" class="text-secondary">
+        MEAN Developer
+      </option>
+      <option value="Java Developer" class="text-secondary">
+        Java Developer
+      </option>
+      <option value="Front-End Developer" class="text-secondary">
+        Front-End Developer
+      </option>
+      <option value="Back-End Developer" class="text-secondary">
+        Back End Developer
+      </option>
+      <option value="Full-Stack Developer" class="text-secondary">
+        Full-Stack Developer
+      </option>
+    </select>
+  </div>
+  <div class="col-12">
+    <label for="location" class="form-label text-secondary"
+      >Enter job location</label
+    >
+    <input
+      type="text"
+      class="form-control text-secondary"
+      id="job-location"
+      aria-describedby="jobLocation"
+      name="location"
+    />
+  </div>
+  <div class="input-group">
+    <label for="company" class="form-label"></label>
+    <span class="input-group-text text-secondary" id="company-name"
+      >Company Name</span
+    >
+    <input
+      type="text"
+      class="form-control text-secondary"
+      id="company-name-input"
+      aria-describedby="company-name"
+      name="company"
+    />
+  </div>
+  <div class="input-group">
+    <input
+      type="number"
+      class="form-control text-secondary"
+      placeholder="Salary"
+      aria-label="Salary"
+      name="salary"
+    />
+    <span class="input-group-text text-secondary">Total Positions</span>
+    <input
+      type="number"
+      class="form-control text-secondary"
+      aria-label="Total Open Positions"
+      value="1"
+      min="1"
+      max="100"
+      step="1"
+      name="openings"
+    />
+  </div>
+  <div class="col-12">
+    <label for="description" class="form-label text-secondary"
+      >Enter Job Description</label
+    >
+    <textarea
+      class="form-control text-secondary"
+      id="job-description"
+      rows="3"
+      name="description"
+    ></textarea>
+  </div>
+
+  <div class="input-group">
+    <select
+      multiple
+      class="form-select"
+      size="4"
+      id="skills"
+      aria-label="Skills Required"
+      name="skills"
+    >
+      <option selected class="text-secondary">Select skills required</option>
+      <option value="React">React</option>
+      <option value="NodeJS">NodeJS</option>
+      <option value="Angular">Angular</option>
+      <option value="ExpressJS">ExpressJS</option>
+      <option value="EJS">EJS</option>
+      <option value="Java">Java</option>
+      <option value="JS">JS</option>
+    </select>
+    <span class="input-group-text text-secondary">Apply By</span>
+    <input
+      type="date"
+      class="form-control text-secondary"
+      placeholder="dd-mm-yyyy"
+      aria-label="Apply By"
+      name="applyBy"
+    />
+  </div>
+
+  <div class="col-12">
+    <button type="submit" class="btn btn-success w-100">Submit</button>
+  </div>
+</form>
