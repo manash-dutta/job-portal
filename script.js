@@ -24,6 +24,7 @@ const jobsController = new JobsController();
 // GET Routes
 app.get("/", jobsController.getHome);
 app.get("/jobs", jobsController.getJobs);
+app.get("/jobs/:id", jobsController.getJobDetails);
 
 // POST Routes
 

@@ -12,6 +12,10 @@ export default class JobsModel {
   static getJobs() {
     return jobs;
   }
+
+  static getJobById(id) {
+    return jobs.find((job) => job.id === Number(id));
+  }
 }
 
 let jobs = [
