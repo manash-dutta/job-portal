@@ -73,9 +73,11 @@
       </div>
       <div class="d-flex">
         <i class="fas fa-users fs-4"></i>
-        <h3 class="fs-5 text-danger">
-          <span class="fw-bold">Applicants: </span>5
-        </h3>
+        <a href="/applicants/<%= job.id %>" class="text-reset text-decoration-none">
+          <h3 class="fs-5 text-danger">
+            <span id="total-applicants" class="fw-bold">Applicants: </span><%= job.applicants %>
+          </h3>
+        </a>
       </div>
       <div>
         <p class="lead mb-4 text-secondary">
@@ -94,11 +96,79 @@
       </ul>
 
       <a
-        href="/jobs/<%= job.id %>"
+        href="#"
         class="btn btn-lg btn-outline-success rounded-pill"
+        data-bs-toggle="modal"
+        data-bs-target="#applyModal"
       >
         Apply Now
       </a>
+
+      <!-- Modal -->
+<div
+class="modal fade"
+id="applyModal"
+tabindex="-1"
+aria-labelledby="applyModalLabel"
+aria-hidden="true"
+>
+<div class="modal-dialog modal-dialog-centered">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="applyModalLabel">Apply for <%= job.position %></h5>
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="modal-body">
+      <form action="/apply" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="jobId" value="<%= job.id %>" /> <!-- Include jobId in the form -->
+        <div class="mb-3">
+          <label for="applicant-name" class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="applicant-name"
+            name="name"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="applicant-email" class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="applicant-email"
+            name="email"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="applicant-phone" class="form-label">Mobile Number</label>
+          <input
+            type="text"
+            class="form-control"
+            id="applicant-phone"
+            name="mobile"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="applicant-resume" class="form-label">Resume</label>
+          <input
+            type="file"
+            class="form-control"
+            id="applicant-resume"
+            name="resume"
+            required
+          />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Application</button>
+      </form>
     </div>
   </div>
+</div>
 </div>

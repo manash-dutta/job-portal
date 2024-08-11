@@ -21,6 +21,7 @@ export default class JobsModel {
     this.applyBy = applyBy;
     this.openings = openings;
     this.category = category;
+    this.applicants = 0;
   }
 
   static getJobs() {
@@ -88,7 +89,15 @@ export default class JobsModel {
     const index = jobs.findIndex((job) => job.id === Number(id));
     jobs.splice(index, 1);
   }
+
+  static incrementApplicantCount(id) {
+    const job = this.getJobById(id);
+    if (job) {
+      job.applicants += 1;
+    }
+  }
 }
+
 
 let jobs = [
   new JobsModel(

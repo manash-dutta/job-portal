@@ -1,0 +1,32 @@
+<h1 class="mt-5 mb-4 header text-center text-secondary">Applicants for Job ID: <%= jobId %></h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Contact</th>
+      <th scope="col">Resume</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if (applicants.length > 0) { %>
+      <% applicants.forEach(applicant => { %>
+        <tr>
+          <th><%= applicant.id %></th>
+          <td><%= applicant.name %></td>
+          <td><%= applicant.email %></td>
+          <td><%= applicant.mobile %></td>
+          <td>
+            <a href="<%= applicant.resume %>" class="btn btn-lg btn-outline-success rounded-pill">View</a>
+          </td>
+        </tr>
+      <% }) %>
+    <% } else { %>
+      <tr>
+        <td colspan="5" class="text-center">No applicants for this job.</td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>

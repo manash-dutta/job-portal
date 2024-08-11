@@ -74,6 +74,11 @@ input:checked + .slider::before {
   opacity: 1;
 }
 
+.modal-backdrop.show {
+  opacity: 0.8;
+  backdrop-filter: blur(10px);
+}
+
 @media (max-width: 991px) {
   .theme-switch-wrapper-s {
     display: none;

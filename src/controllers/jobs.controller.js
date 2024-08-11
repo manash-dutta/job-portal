@@ -46,13 +46,16 @@ export default class JobsController {
       openings,
       category,
     } = req.body;
+    const skillsArray = Array.isArray(skills)
+      ? skills
+      : skills.split(",").map((skill) => skill.trim());
     JobsModel.addJob(
       position,
       company,
       description,
       location,
       salary,
-      skills,
+      skillsArray,
       applyBy,
       openings,
       category
