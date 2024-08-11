@@ -1,11 +1,13 @@
 import express from "express";
 import ejsLayouts from "express-ejs-layouts";
-import session from "express-session";
-import cookieParser from "cookie-parser";
-import { resolve } from "path";
-import JobsController from "./src/controllers/jobs.controller.js";
 import ApplicantController from "./src/controllers/applicants.controller.js";
+import RecruiterController from "./src/controllers/recruiter.controller.js";
+import JobsController from "./src/controllers/jobs.controller.js";
+import { resolve } from "path";
 import { uploadFile } from "./src/middlewares/file-upload.middleware.js";
+import session from "express-session";
+import { auth } from "./src/middlewares/auth.middleware.js";
+import cookieParser from "cookie-parser";
 
 // Create express server
 const app = express();
@@ -31,7 +33,7 @@ app.use(
 // Creating instances of controllers
 const jobsController = new JobsController();
 const applicantsController = new ApplicantController();
-
+const recruiterController = new RecruiterController();
 
 // GET Routes
 app.get("/", jobsController.getHome);
@@ -40,7 +42,9 @@ app.get("/jobs/:id", jobsController.getJobDetails);
 app.get("/new-job", jobsController.getAddNewJob);
 app.get("/edit-job/:id", jobsController.getUpdateJob);
 app.get("/applicants/:jobId", applicantsController.getApplicantsByJob);
-
+app.get("/register", recruiterController.getRegister);
+app.get("/login", recruiterController.getLogin);
+app.get("/logout", recruiterController.getLogout);
 
 // POST Routes
 app.post("/add-job", jobsController.postAddNewJob);
@@ -51,6 +55,8 @@ app.post(
   uploadFile.single("resume"),
   applicantsController.postApplyJob
 );
+app.post("/login", recruiterController.postLogin);
+app.post("/register", recruiterController.postRegister);
 
 // Setting server to listen to port
 app.listen(2200, () => {

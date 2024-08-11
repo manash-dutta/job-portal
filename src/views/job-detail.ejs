@@ -31,17 +31,20 @@
         Actively hiring
         <i class="fas fa-chart-line ms-2 fs-5"></i>
       </span>
-      <span>
-        <a href="/edit-job/<%= job.id %>" class="text-reset text-decoration-none">
-          <i class="fas fa-pen-to-square text-info edit-icon"></i>
-        </a>
-        <button
-          class="btn btn-link p-0 border-0"
-          onclick="deleteJob('<%= job.id %>')"
-        >
-          <i class="fas fa-trash-can text-danger ms-2 delete-icon"></i>
-        </button>
-      </span>
+      <% if (locals.userEmail) { %>
+        <span>
+          <a href="/edit-job/<%= job.id %>" class="text-reset text-decoration-none">
+            <i class="fas fa-pen-to-square text-info edit-icon"></i>
+          </a>
+          <button
+            class="btn btn-link p-0 border-0"
+            onclick="deleteJob('<%= job.id %>')"
+          >
+            <i class="fas fa-trash-can text-danger ms-2 delete-icon"></i>
+          </button>
+        </span>
+      <% } %>
+
     </div>
     <div class="card-body">
       <h1 class="card-title text-warning-emphasis"><%= job.company %></h1>
@@ -73,11 +76,19 @@
       </div>
       <div class="d-flex">
         <i class="fas fa-users fs-4"></i>
-        <a href="/applicants/<%= job.id %>" class="text-reset text-decoration-none">
-          <h3 class="fs-5 text-danger">
-            <span id="total-applicants" class="fw-bold">Applicants: </span><%= job.applicants %>
-          </h3>
-        </a>
+        <% if (locals.userEmail) { %>
+          <a href="/applicants/<%= job.id %>" class="text-reset text-decoration-none">
+            <h3 class="fs-5 text-danger">
+              <span id="total-applicants" class="fw-bold">Applicants: </span><%= job.applicants %>
+            </h3>
+          </a>
+          <% } else { %>
+            <h3 class="fs-5 text-danger">
+              <span id="total-applicants" class="fw-bold">Applicants: </span><%= job.applicants %>
+            </h3>
+        <% } %>
+
+
       </div>
       <div>
         <p class="lead mb-4 text-secondary">
