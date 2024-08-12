@@ -17,7 +17,7 @@
   <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand text-success" href="#">JobiFy</a>
+        <a class="navbar-brand text-success" href="/">JobiFy</a>
         <div class="d-flex align-items-center">
           <div class="me-2 theme-switch-wrapper-b">
             <span class="me-2 d-flex align-items-center">
@@ -57,12 +57,15 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Recruiter
+                <% if (userName) { %>
+                 <%= userName %>
+                 <% } else { %>
+                  Recruiter
+                <% } %>
               </a>
               <ul class="dropdown-menu">
                 <% if (locals.userEmail) { %>
                   <li><a class="dropdown-item" href="/logout">Log out</a></li>
-                  <!-- <li><hr class="dropdown-divider" /></li> -->
                   <li>
                     <a class="dropdown-item" href="/new-job">Post new job</a>
                   </li>
@@ -85,10 +88,11 @@
                 <div class="slider round"></div>
               </label>
             </div>
-            <form class="d-flex" role="search">
+            <form class="d-flex" role="search" action="/search" method="GET">
               <input
                 class="form-control me-2 rounded-pill"
                 type="search"
+                name="query"
                 placeholder="Search"
                 aria-label="Search"
               />
@@ -105,7 +109,7 @@
     </nav>
     <div class="container mt-5"><%- body %></div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="/toggleTheme.js"></script>
+    <!-- <script src="/toggleTheme.js"></script> -->
     <script src="/main.js"></script>
   </body>
 </html>

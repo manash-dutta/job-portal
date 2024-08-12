@@ -62,6 +62,23 @@ input:checked + .slider::before {
   margin-right: 5px;
 }
 
+/* Rotate home image */
+.rotate-image {
+  display: inline-block;
+  animation: rotate 90s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* styles for hover on delete and edit icons */
+
 .delete-icon:hover,
 .edit-icon:hover {
   filter: brightness(80%);

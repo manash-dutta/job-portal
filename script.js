@@ -7,7 +7,12 @@ import { resolve } from "path";
 import { uploadFile } from "./src/middlewares/file-upload.middleware.js";
 import session from "express-session";
 import { auth } from "./src/middlewares/auth.middleware.js";
-import cookieParser from "cookie-parser";
+import {
+  validateNewRecruiterForm,
+  validateNewJobForm,
+  validateEditJobForm,
+} from "./src/middlewares/validation.middleware.js";
+import { setUserLocals } from "./src/middlewares/current-user.middleware.js";
 
 // Create express server
 const app = express();
@@ -29,6 +34,7 @@ app.use(
     cookie: { secure: false },
   })
 );
+app.use(setUserLocals);
 
 // Creating instances of controllers
 const jobsController = new JobsController();
@@ -39,24 +45,29 @@ const recruiterController = new RecruiterController();
 app.get("/", jobsController.getHome);
 app.get("/jobs", jobsController.getJobs);
 app.get("/jobs/:id", jobsController.getJobDetails);
-app.get("/new-job", jobsController.getAddNewJob);
-app.get("/edit-job/:id", jobsController.getUpdateJob);
-app.get("/applicants/:jobId", applicantsController.getApplicantsByJob);
+app.get("/new-job", auth, jobsController.getAddNewJob);
+app.get("/edit-job/:id", auth, jobsController.getUpdateJob);
+app.get("/applicants/:jobId", auth, applicantsController.getApplicantsByJob);
 app.get("/register", recruiterController.getRegister);
 app.get("/login", recruiterController.getLogin);
 app.get("/logout", recruiterController.getLogout);
+app.get("/search", jobsController.searchJobs)
 
 // POST Routes
-app.post("/add-job", jobsController.postAddNewJob);
-app.post("/edit-job", jobsController.postUpdateJob);
-app.post("/delete-job/:id", jobsController.postDeleteJob);
+app.post("/add-job", auth, validateNewJobForm, jobsController.postAddNewJob);
+app.post("/edit-job", auth, validateEditJobForm, jobsController.postUpdateJob);
+app.post("/delete-job/:id", auth, jobsController.postDeleteJob);
 app.post(
   "/apply",
   uploadFile.single("resume"),
   applicantsController.postApplyJob
 );
 app.post("/login", recruiterController.postLogin);
-app.post("/register", recruiterController.postRegister);
+app.post(
+  "/register",
+  validateNewRecruiterForm,
+  recruiterController.postRegister
+);
 
 // Setting server to listen to port
 app.listen(2200, () => {

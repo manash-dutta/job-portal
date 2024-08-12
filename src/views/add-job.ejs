@@ -1,5 +1,13 @@
 <h1 class="text-center text-secondary">Post a new Job</h1>
 
+<% if (errors) { %>
+  <% errors.forEach(error => { %>
+   <div class="alert alert-danger" role="alert">
+     <%= error.msg %>
+   </div>
+  <% }) %>
+ <% } %>
+
 <form action="/add-job" method="POST" class="row g-3 text-secondary">
   <div class="col-12">
     <select
@@ -39,6 +47,9 @@
       </option>
       <option value="Full-Stack Developer" class="text-secondary">
         Full-Stack Developer
+      </option>
+      <option value="Data Analyst" class="text-secondary">
+        Data Analyst
       </option>
     </select>
   </div>
@@ -108,13 +119,19 @@
       aria-label="Skills Required"
       name="skills"
     >
-      <option selected class="text-secondary">Select skills required</option>
+      <option class="text-secondary">Select skills required</option>
       <option value="React">React</option>
       <option value="NodeJS">NodeJS</option>
       <option value="Angular">Angular</option>
       <option value="ExpressJS">ExpressJS</option>
       <option value="EJS">EJS</option>
       <option value="Java">Java</option>
+      <option value="AWS">AWS</option>
+      <option value="HTML">HTML</option>
+      <option value="MongoDB">MongoDB</option>
+      <option value="Data Structures">Data Structures</option>
+      <option value="Springboot">Springboot</option>
+      <option value="CSS">CSS</option>
       <option value="JS">JS</option>
     </select>
     <span class="input-group-text text-secondary">Apply By</span>

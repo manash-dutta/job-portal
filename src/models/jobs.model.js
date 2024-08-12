@@ -9,7 +9,8 @@ export default class JobsModel {
     skills,
     applyBy,
     openings,
-    category
+    category,
+    postedAt
   ) {
     this.id = id;
     this.position = position;
@@ -22,6 +23,7 @@ export default class JobsModel {
     this.openings = openings;
     this.category = category;
     this.applicants = 0;
+    this.postedAt = postedAt;
   }
 
   static getJobs() {
@@ -53,7 +55,8 @@ export default class JobsModel {
       skills,
       applyBy,
       openings,
-      category
+      category,
+      new Date().toLocaleDateString()
     );
     jobs.push(newJob);
   }
@@ -96,33 +99,48 @@ export default class JobsModel {
       job.applicants += 1;
     }
   }
-}
 
+  static jobSearchResult(query) {
+    const normalizedQuery = query.trim().toLowerCase();
+
+    const data = jobs.filter((job) => {
+      return (
+        job.company.trim().toLowerCase().includes(normalizedQuery) ||
+        job.location.trim().toLowerCase().includes(normalizedQuery) ||
+        job.position.trim().toLowerCase().includes(normalizedQuery)
+      );
+    });
+
+    return data;
+  }
+}
 
 let jobs = [
   new JobsModel(
     1,
-    "SDE-1",
+    "SDE",
     "Microsoft",
     "We are seeking a motivated and enthusiastic Software Development Engineer 1 (SDE-1) to join our engineering team. As an SDE-1, you will be responsible for designing, developing, and maintaining software applications. You will work closely with senior engineers and cross-functional teams to deliver high-quality solutions that meet business needs.",
     "Bangalore",
-    15000,
+    35000,
     ["Java", "AWS", "Springboot", "JS", "React", "MongoDB", "Data Structures"],
-    "30 Sep 2024",
+    "2024-09-30",
     2,
-    "Tech"
+    "Tech",
+    "5/12/2024"
   ),
   new JobsModel(
     2,
-    "Web Development Intern",
+    "MERN Developer",
     "HoneymoonIQ",
-    "We are looking for a passionate and creative Web Development Intern to join our team. As a Web Development Intern, you will work closely with our development team to support various web projects and gain hands-on experience in designing and implementing web solutions. You will have the opportunity to contribute to the development of websites and web applications, learn about industry best practices, and enhance your skills in a collaborative and dynamic environment.",
+    "We are looking for a passionate and creative Web Developer to join our team. As a Web Development Intern, you will work closely with our development team to support various web projects and gain hands-on experience in designing and implementing web solutions. You will have the opportunity to contribute to the development of websites and web applications, learn about industry best practices, and enhance your skills in a collaborative and dynamic environment.",
     "Remote",
-    5000,
+    20000,
     ["HTML", "CSS", "JS", "React", "MongoDB", "Data Structures", "AWS"],
-    "31 Aug 2024",
+    "2024-08-31",
     7,
-    "Tech"
+    "Tech",
+    "7/31/2024"
   ),
   new JobsModel(
     3,
@@ -132,8 +150,9 @@ let jobs = [
     "Kolkata",
     12000,
     ["Java", "AWS", "Springboot", "JS", "React", "MongoDB", "Data Structures"],
-    "30 Aug 2024",
+    "2024-08-31",
     3,
-    "Tech"
+    "Tech",
+    "8/1/2024"
   ),
 ];

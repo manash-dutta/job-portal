@@ -6,9 +6,9 @@
     <div class="col-md-6 col-lg-4 mx-auto">
       <h1 class="mt-5 mb-4 header text-center">Login</h1>
 
-      <%if(error){ %>
+      <%if(errors){ %>
         <div class="alert alert-danger" role="alert">
-            <%= error %>
+            <%= errors %>
         </div>
       <%}%>
 
@@ -35,6 +35,11 @@
         </div>
         <button type="submit" class="btn btn-success rounded-pill px-5">Login</button>
       </form>
+      <hr>
+      <div>
+        <small class="text-secondary me-3">Not Registered?</small>
+        <a href="/register" class="btn btn-sm btn-outline-success rounded-pill">Register</a>
+      </div>
     </div>
   </div>
 </div>

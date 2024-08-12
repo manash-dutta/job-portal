@@ -1,5 +1,13 @@
 <h1 class="text-center text-secondary">Update this Job</h1>
 
+<% if (errors) { %>
+  <% errors.forEach(error => { %>
+   <div class="alert alert-danger" role="alert">
+     <%= error.msg %>
+   </div>
+  <% }) %>
+ <% } %>
+
 <form action="/edit-job" method="POST" class="row g-3 text-secondary">
   <input
     type="hidden"
@@ -107,6 +115,12 @@
       <option value="ExpressJS" class="text-secondary" <%= job.skills.includes("ExpressJS") ? "selected" : "" %>>ExpressJS</option>
       <option value="EJS" class="text-secondary" <%= job.skills.includes("EJS") ? "selected" : "" %>>EJS</option>
       <option value="Java" class="text-secondary" <%= job.skills.includes("Java") ? "selected" : "" %>>Java</option>
+      <option value="AWS" class="text-secondary" <%= job.skills.includes("AWS") ? "selected" : "" %>>AWS</option>
+      <option value="HTML" class="text-secondary" <%= job.skills.includes("HTML") ? "selected" : "" %>>HTML</option>
+      <option value="MongoDB" class="text-secondary" <%= job.skills.includes("MongoDB") ? "selected" : "" %>>MongoDB</option>
+      <option value="Data Structures" class="text-secondary" <%= job.skills.includes("Data Structures") ? "selected" : "" %>>Data Structures</option>
+      <option value="Springboot" class="text-secondary" <%= job.skills.includes("Springboot") ? "selected" : "" %>>Springboot</option>
+      <option value="CSS" class="text-secondary" <%= job.skills.includes("CSS") ? "selected" : "" %>>CSS</option>
       <option value="JS" class="text-secondary" <%= job.skills.includes("JS") ? "selected" : "" %>>JS</option>
     </select>
     <span class="input-group-text text-secondary">Apply By</span>

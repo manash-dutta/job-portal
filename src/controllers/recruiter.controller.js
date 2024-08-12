@@ -3,11 +3,11 @@ import JobsModel from "../models/jobs.model.js";
 
 export default class RecruiterController {
   getRegister(req, res) {
-    res.render("register");
+    res.render("register", {errors: null});
   }
 
   getLogin(req, res) {
-    res.render("login", { error: null });
+    res.render("login", { errors: null });
   }
 
   getLogout(req, res) {
@@ -23,7 +23,7 @@ export default class RecruiterController {
   postRegister(req, res) {
     const { name, email, password } = req.body;
     RecruiterModel.add(name, email, password);
-    res.render("login", { error: null });
+    res.render("login", { errors: null });
   }
 
   postLogin(req, res) {
@@ -32,12 +32,16 @@ export default class RecruiterController {
       email,
       password
     );
-    console.log("Existing recruiter", existingRecruiter);
     if (!existingRecruiter) {
-      return res.render("login", { error: "Invalid Credentials" });
+      return res.render("login", { errors: "Invalid Credentials" });
     }
     req.session.userEmail = email;
+    req.session.userName = existingRecruiter.name;
     let jobs = JobsModel.getJobs();
-    res.render("jobs", { jobs, userEmail: req.session.userEmail });
+    res.render("jobs", {
+      jobs,
+      userEmail: req.session.userEmail,
+      userName: req.session.userName,
+    });
   }
 }

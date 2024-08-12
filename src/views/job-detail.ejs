@@ -106,14 +106,23 @@
         <% }) %>
       </ul>
 
-      <a
-        href="#"
-        class="btn btn-lg btn-outline-success rounded-pill"
-        data-bs-toggle="modal"
-        data-bs-target="#applyModal"
+      <div class="d-flex justify-content-between">
+
+        <a
+          href="#"
+          class="btn btn-lg btn-outline-success rounded-pill"
+          data-bs-toggle="modal"
+          data-bs-target="#applyModal"
+        >
+          Apply Now
+        </a>
+
+        <span
+        class="badge d-flex align-items-center p-2 pe-2 text-success-emphasis bg-success-subtle border border-success-subtle rounded-pill w-50 justify-content-center"
       >
-        Apply Now
-      </a>
+      Posted on: <%= job.postedAt %>
+      </span>
+      </div>
 
       <!-- Modal -->
 <div
@@ -126,7 +135,8 @@ aria-hidden="true"
 <div class="modal-dialog modal-dialog-centered">
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title" id="applyModalLabel">Apply for <%= job.position %></h5>
+      <h1 class="modal-title me-4 text-success">JobiFy</h2>
+      <h5 class="ms-5" id="applyModalLabel">Apply for <%= job.position %></h5>
       <button
         type="button"
         class="btn-close"

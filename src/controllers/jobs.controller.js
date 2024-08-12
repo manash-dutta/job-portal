@@ -2,7 +2,7 @@ import JobsModel from "../models/jobs.model.js";
 
 export default class JobsController {
   getHome(req, res) {
-    res.render("home");
+    res.render("home", { userEmail: req.session.userEmail });
   }
 
   getJobs(req, res) {
@@ -113,4 +113,10 @@ export default class JobsController {
     JobsModel.deleteJob(id);
     res.render("jobs", { jobs });
   }
+
+  searchJobs(req, res) {
+    const { query } = req.query;
+    const jobs = JobsModel.jobSearchResult(query);
+    res.render("search-job", { jobs, query });
+  };
 }
