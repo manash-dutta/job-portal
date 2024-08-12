@@ -6,7 +6,7 @@ import JobsController from "./src/controllers/jobs.controller.js";
 import { resolve } from "path";
 import { uploadFile } from "./src/middlewares/file-upload.middleware.js";
 import session from "express-session";
-import { auth } from "./src/middlewares/auth.middleware.js";
+import { auth, authError } from "./src/middlewares/auth.middleware.js";
 import {
   validateNewRecruiterForm,
   validateNewJobForm,
@@ -47,7 +47,7 @@ app.get("/jobs", jobsController.getJobs);
 app.get("/jobs/:id", jobsController.getJobDetails);
 app.get("/new-job", auth, jobsController.getAddNewJob);
 app.get("/edit-job/:id", auth, jobsController.getUpdateJob);
-app.get("/applicants/:jobId", auth, applicantsController.getApplicantsByJob);
+app.get("/applicants/:jobId", authError, applicantsController.getApplicantsByJob);
 app.get("/register", recruiterController.getRegister);
 app.get("/login", recruiterController.getLogin);
 app.get("/logout", recruiterController.getLogout);

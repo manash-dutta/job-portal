@@ -76,17 +76,12 @@
       </div>
       <div class="d-flex">
         <i class="fas fa-users fs-4"></i>
-        <% if (locals.userEmail) { %>
+        
           <a href="/applicants/<%= job.id %>" class="text-reset text-decoration-none">
             <h3 class="fs-5 text-danger">
               <span id="total-applicants" class="fw-bold">Applicants: </span><%= job.applicants %>
             </h3>
           </a>
-          <% } else { %>
-            <h3 class="fs-5 text-danger">
-              <span id="total-applicants" class="fw-bold">Applicants: </span><%= job.applicants %>
-            </h3>
-        <% } %>
 
 
       </div>
